@@ -16,4 +16,4 @@ If you are on a windows pc execute:
 Accessing the secret menu
 =========================
 
-If you give as name "2secret4me" you can access the settings
+If you give as name "3secret5me" you can access the settings

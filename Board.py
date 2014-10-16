@@ -22,6 +22,9 @@ class Board:
 	def add_win_pattern (self, pattern):
 		self.winpatterns.append(pattern)
 
+	def reset_patterns (self):
+		self.winpatterns = []
+
 	def get_disk (self, point):
 		""" Get the disk at point (x, y) where the left top corner is (0,0) and left down increases"""
 		try:

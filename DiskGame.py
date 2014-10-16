@@ -5,10 +5,6 @@ from Board import *
 class DiskGame:
 	"""Game where people have to create a pattern by adding disks at the top of collumns aka three on a line overbuild beta edition"""
 
-	gamemodes = {
-		
-	}
-
 	def __init__ (self, board_size=(7,7), playercount=2):
 		"""Initiate with a board_size (height, width)"""
 		self.board = Board(board_size)
@@ -23,7 +19,7 @@ class DiskGame:
 
 		while len(self.names) < self.playercount:
 			self.names.append(input("Wat is de naam van speler " + str(len(self.names) + 1) + "? \n"))
-			if self.names[-1] == "2secret4me":
+			if self.names[-1] == "3secret5me":
 				self.open_secret_menu()
 
 	def print_board (self):
@@ -70,12 +66,17 @@ class DiskGame:
 		print("")
 		print("")
 
+
 		while True:
 			command = input("Please provide me with your command: ").split()
 			if command[0] == "quit":
 				for i in range(0, 15):
 					print("")
 				break
+
+			if command[0] == "reset":
+				print("Resetting win patterns\n")
+				self.board.reset_patterns()
 
 			if command[0] == "playercount":
 				try:
@@ -92,7 +93,53 @@ class DiskGame:
 					print("Invalid input! \n")
 			
 			if command[0] == "gamemode":
-				self.gamemodes
+				try:
+					if command[1] == "tryhard":
+						self.board.add_win_pattern([
+							[1, 1, 1],
+							[1, 0, 1]])
+
+						print("Adding patterns:\n")
+						print("Head:")
+						print("	 [1, 1, 1]")
+						print("  [1, 0, 1]")
+					if command[1] == "threeonaline":
+						self.board.add_win_pattern([[1, 1, 1]]) #Horizontal pattern
+						self.board.add_win_pattern([[1],[1],[1]]) #Vertical pattern
+
+						self.board.add_win_pattern([
+							[1, 0, 0],
+							[0, 1, 0],
+							[0, 0, 1]
+						])
+
+						self.board.add_win_pattern([
+							[0, 0, 1],
+							[0, 1, 0],
+							[1, 0, 0]
+						])
+
+						print("Adding patterns:\n")
+						print("Horizontal:")
+						print("	 [1, 1, 1]\n")
+						print("Vertical:")
+						print("  [[1], [1], [1]]\n")
+						print("Diagonals:")
+						print("	 [1, 0, 0]")
+						print("  [0, 1, 0]")
+						print("  [0, 0, 1] \n")
+						print("	 [0, 0, 1]")
+						print("  [0, 1, 0]")
+						print("  [1, 0, 0] \n")
+
+					if command[1] == "fouronaline":
+						print("WIP")
+						
+					if command[1] == "disksonaline":
+						print("WIP")
+
+				except:
+					print("Invalid input! \n")
 				
 			if command[0] == "addpattern":
 				pass
